@@ -14,6 +14,7 @@ class ClothesController < ApplicationController
 
   def create
     @clothe = Clothe.new(clothe_params)
+    @clothe.user = current_user
 
     if @clothe.save
       redirect_to @clothe, notice: "La prenda se ha creado correctamente."
@@ -46,7 +47,7 @@ end
 private
 
 def clothe_params
-  params.require(:clothe).permit(:size, :price, :name, :brand, :comment, :user_id)
+  params.require(:clothe).permit(:name, :brand, :size, :price, :comment, :photo, :user_id)
 end
 
 def set_clothe

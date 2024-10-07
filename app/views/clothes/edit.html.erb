@@ -1,0 +1,12 @@
+<div class="container w-50 m-4">
+  <h1>Edit current clothe</h1>
+  <%= simple_form_for (@clothe) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :brand %>
+    <%= f.input :size %>
+    <%= f.input :price %>
+    <%= f.input :comment %>
+    <%= f.input :photo, as: :file%>
+    <%= f.submit "Update Clothe", class:"btn btn-primary"%>
+  <% end %>
+</div>
