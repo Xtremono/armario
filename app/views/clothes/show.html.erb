@@ -1,0 +1,39 @@
+<div class="container mt-2">
+  <div class="container p-2 d-flex justify-content-center">
+    <div class="m-2">
+      <div class="card shadow" style="width: 30rem;">
+        <%= image_tag @clothe.photo, height: "300px" %>
+        <div class="card-body">
+          <h1 class="card-title"><%= @clothe.name %></h1>
+          <p class="card-text">Some clothe I sell</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Name: <%= @clothe.name %></li>
+          <li class="list-group-item">Brand: <%= @clothe.brand %></li>
+          <li class="list-group-item">Price: <%= @clothe.price %></li>
+          <li class="list-group-item">User: <%= @clothe.user.email %></li>
+        </ul>
+
+        <div class="card-body d-flex justify-content-between">
+          <%= simple_form_for [@clothe, @order] do |f| %>
+            <%= f.submit "Buy clothe", class: "btn btn-primary" %>
+          <% end %>
+
+          <% if @clothe.user == current_user %>
+            <%= link_to "Edit", edit_clothe_path(@clothe), class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="container mt-3 mb-3">
+        <%= link_to "Go back to home page", root_path, class: "btn btn-outline-secondary" %>
+
+        <% if @clothe.user == current_user %>
+          <%= link_to "Delete clothe", clothe_path(@clothe),
+              method: :delete, data: { confirm: "Are you sure you want to take down your clothe?" },
+              class: "btn btn-outline-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

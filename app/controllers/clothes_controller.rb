@@ -6,6 +6,7 @@ class ClothesController < ApplicationController
 
   def show
     @clothe = Clothe.find(params[:id])
+    @order = @clothe.orders.build
   end
 
   def new
